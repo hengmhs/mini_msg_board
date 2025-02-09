@@ -1,11 +1,10 @@
 import { Router } from "express";
 import { messages } from "../db";
+import { getIndexPage } from "../controllers/indexController";
 
 const indexRouter = Router();
 
-indexRouter.get("/", (req, res) => {
-  res.render("index", { title: "Mini Messageboard", messages: messages });
-});
+indexRouter.get("/", getIndexPage);
 
 indexRouter.get("/new", (req, res) => {
   res.render("form");
