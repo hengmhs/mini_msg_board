@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import path from "path";
 import indexRouter from "./routes/indexRouter";
+import newMessageRouter from "./routes/newMessageRouter";
 
 const app = express();
 const PORT = 3000;
@@ -23,6 +24,7 @@ For this to work as intended, you’ll need to use a app level Express middlewar
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/", indexRouter);
+app.use("/new", newMessageRouter);
 
 // Catch every thrown error
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
