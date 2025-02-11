@@ -2,7 +2,7 @@
 
 <body>
     <div>
-        <% messages.forEach(({text, user, added})=> { %>
+        <% messages.forEach(({text, user, added}, index)=> { %>
             <div>
                 <div>
                     <b>
@@ -16,6 +16,9 @@
                     <i>
                         <%= added %>
                     </i>
+                </div>
+                <div>
+                    <a href="/msg/<%= index  %>">Open</a>
                 </div>
                 <hr>
             </div>
