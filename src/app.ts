@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import path from "path";
 import indexRouter from "./routes/indexRouter";
 import newMessageRouter from "./routes/newMessageRouter";
+import messageDisplayRouter from "./routes/messageDisplayRouter";
 
 const app = express();
 const PORT = 3000;
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", indexRouter);
 app.use("/new", newMessageRouter);
+app.use("/msg", messageDisplayRouter);
 
 // Catch every thrown error
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
