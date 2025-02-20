@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { messages } from "../db";
 import expressAsyncHandler from "express-async-handler";
+import { insertMessage } from "../db/queries";
 
 const getNewMessageFormPage = expressAsyncHandler(
   (req: Request, res: Response) => {
@@ -8,10 +9,12 @@ const getNewMessageFormPage = expressAsyncHandler(
   }
 );
 
-const postNewMessage = expressAsyncHandler((req: Request, res: Response) => {
-  const { username, text } = req.body;
-  messages.push({ text, username, added: new Date() });
-  res.redirect("/");
-});
+const postNewMessage = expressAsyncHandler(
+  async (req: Request, res: Response) => {
+    const { username, text } = req.body;
+    await insertMessage(username, text);
+    res.redirect("/");
+  }
+);
 
 export { getNewMessageFormPage, postNewMessage };

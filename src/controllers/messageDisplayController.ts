@@ -8,8 +8,6 @@ const getMessagePage = expressAsyncHandler(
 
     const message = await getSpecificMessage(Number(id));
 
-    console.log(message);
-
     res.render("message", { message: message[0] });
   }
 );
