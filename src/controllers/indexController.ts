@@ -1,9 +1,12 @@
 import { Request, Response } from "express";
-import { messages } from "../db";
+import { getAllMessages } from "../db/queries";
 import expressAsyncHandler from "express-async-handler";
 
-const getIndexPage = expressAsyncHandler((req: Request, res: Response) => {
-  res.render("index", { title: "Mini Messageboard", messages: messages });
-});
+const getIndexPage = expressAsyncHandler(
+  async (req: Request, res: Response) => {
+    const messages = await getAllMessages();
+    res.render("index", { title: "Mini Messageboard", messages: messages });
+  }
+);
 
 export { getIndexPage };

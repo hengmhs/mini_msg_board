@@ -9,8 +9,8 @@ const getNewMessageFormPage = expressAsyncHandler(
 );
 
 const postNewMessage = expressAsyncHandler((req: Request, res: Response) => {
-  const { user, text } = req.body;
-  messages.push({ text, user, added: new Date() });
+  const { username, text } = req.body;
+  messages.push({ text, username, added: new Date() });
   res.redirect("/");
 });
 
