@@ -21,13 +21,15 @@ VALUES
 
 async function main() {
   console.log("seeding...");
-  const client = new Client({
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
-    host: process.env.DATABASE_HOST,
-    database: process.env.DATABASE_NAME,
-    ssl: true,
-  });
+  // Reads from the default values in the .env file
+  /*
+PGUSER=process.env.USER
+PGPASSWORD=null
+PGHOST=localhost
+PGPORT=5432
+PGDATABASE=process.env.USER
+*/
+  const client = new Client({ ssl: true });
   await client.connect();
   await client.query(SQL);
   await client.end();
