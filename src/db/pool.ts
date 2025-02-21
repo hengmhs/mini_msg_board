@@ -5,7 +5,11 @@ const { Pool } = pg;
 dotenv.config();
 
 const pool = new Pool({
-  connectionString: `postgresql://${process.env.ROLE_USERNAME}:${process.env.ROLE_PASSWORD}@localhost:5432/messages`,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  host: process.env.DATABASE_HOST,
+  database: process.env.DATABASE_NAME,
+  ssl: true,
 });
 
 export default pool;
